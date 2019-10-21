@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 17:09:23 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 13:27:39 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/21 14:00:10 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,17 @@ void displaySearch(Contact person[8], int idx) {
 	// Force user to select
 	while (1) {
 		std::cout << "Select index to display info: ";
+		strChoice = "";
 		getline(std::cin, strChoice);
-		int choice = stoi(strChoice);
+		int choice = -1;
+		if (strChoice.length() != 1 || !isdigit(strChoice[0])) {
+			std::cout << "Invalid input, select 0 - " << idx - 1 << std::endl;
+			choice = -1;
+		} else {
+			choice = stoi(strChoice);
+		}
 		if (choice > idx - 1 || choice < 0) {
-			std::cout << "Out of bounds...\n";
+			std::cout << "Out of bounds detected...\n";
 		} else if (choice >=0 && choice <= 7) {
 			person[choice].printContact();
 			std::cin.clear();
@@ -113,9 +120,12 @@ int main(void) {
 				idx++;
 			}
 		}
-		else if (input == "SEARCH" && idx > 0)
-		{
-			displaySearch(person, idx);
+		else if (input == "SEARCH") {
+			if (!idx) {
+				std::cout << "Empty list detected...Did you ADD any contact?\n";
+			} else {
+				displaySearch(person, idx);
+			}
 		}
 	}
 	return (0);
