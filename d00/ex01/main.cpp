@@ -6,14 +6,14 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 17:09:23 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 14:00:10 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/21 14:10:02 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iomanip>
 #include <string.h>
 #include <iostream>
-#include "contact.hpp"
+#include "Contact.hpp"
 
 
 void Contact::createContact(void) {
