@@ -6,14 +6,14 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 18:44:31 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 19:20:42 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:30:50 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIEHORDE_HPP
 #define ZOMBIEHORDE_HPP
 
-#include "Zombie.cpp"
+#include "Zombie.hpp"
 
 class ZombieHorde {
 	private:
@@ -22,7 +22,8 @@ class ZombieHorde {
 		ZombieHorde(void);
 		~ZombieHorde(void);
 		Zombie *getHorde(void);
-		void createHorde(int N);
+		void spawnHorde(int N);
+		std::string randomName(int idx);
 };
 
 #endif

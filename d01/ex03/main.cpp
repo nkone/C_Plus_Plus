@@ -6,18 +6,17 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 19:12:23 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 19:12:26 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/21 22:08:38 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ZombieHorde.hpp"
 #include <iostream>
-#include "Zombie.hpp"
-
+#include "Zombiehorde.hpp"
 int main(void)
 {
 	ZombieHorde hordeManager;
 	
-	hordeManager.spawnHorde(5);
+	srand(time(NULL));
+	hordeManager.spawnHorde(10);
 	return (0);
 }
