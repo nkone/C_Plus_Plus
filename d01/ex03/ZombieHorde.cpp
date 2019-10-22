@@ -6,11 +6,11 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 18:54:55 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 22:35:11 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/22 13:33:53 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombiehorde.hpp"
+#include "ZombieHorde.hpp"
 #include "Zombie.hpp"
 #include <iostream>
 #include <ctime>
