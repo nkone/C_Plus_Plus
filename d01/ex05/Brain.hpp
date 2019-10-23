@@ -6,12 +6,13 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 14:36:35 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/22 15:27:32 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:11:31 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
+
 #include <string>
 #include <iostream>
 

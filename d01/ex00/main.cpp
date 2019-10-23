@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:20:05 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/21 15:50:41 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:46:57 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 Pony	*ponyOnTheHeap(std::string name) {
 	Pony* heapPony = new Pony(name);
+	heapPony->announce();
 	return heapPony;
 }
 
 Pony	ponyOnTheStack(std::string name) {
 	Pony stackPony = Pony(name);
+	stackPony.announce();
 	return stackPony;
 }
 
