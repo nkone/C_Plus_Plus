@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 16:42:20 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/22 19:23:52 by phtruong         ###   ########.fr       */
+/*   Created: 2019/10/22 19:05:34 by phtruong          #+#    #+#             */
+/*   Updated: 2019/10/22 19:25:01 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#ifndef HUMAN_A_HPP
+#define HUMAN_A_HPP
 
+#include "Weapon.hpp"
 #include <iostream>
 
-Weapon::Weapon(std::string type) : _type(type) {
-	std::cout << "Weapon created\n";
-}
+class HumanA {
+	private:
+		Weapon &_weapon;
+		std::string _name;
+	public:
+		HumanA(std::string, Weapon&);
+		~HumanA();
+		void attack(void);	
+};
 
-Weapon::~Weapon() {
-	std::cout << "Weapon deleted\n";
-}
-
-const std::string Weapon::getType(void) const {
-	return this->_type;
-}
-
-void Weapon::setType(std::string type){
-	this->_type = type;
-}
+#endif

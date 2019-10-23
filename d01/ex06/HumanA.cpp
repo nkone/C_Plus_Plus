@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 16:42:20 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/22 19:23:52 by phtruong         ###   ########.fr       */
+/*   Created: 2019/10/22 19:08:13 by phtruong          #+#    #+#             */
+/*   Updated: 2019/10/22 19:52:07 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#include "HumanA.hpp"
 
-#include <iostream>
-
-Weapon::Weapon(std::string type) : _type(type) {
-	std::cout << "Weapon created\n";
+HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon){
+	std::cout << "Human A created with name: " << this->_name << std::endl;
 }
 
-Weapon::~Weapon() {
-	std::cout << "Weapon deleted\n";
+HumanA::~HumanA() {
+	std::cout << "Human A deleted with name: " << this->_name << std::endl;
 }
 
-const std::string Weapon::getType(void) const {
-	return this->_type;
-}
-
-void Weapon::setType(std::string type){
-	this->_type = type;
+void HumanA::attack(void) {
+	std::cout << this->_name << " attacks with " << this->_weapon.getType() << std::endl;
 }
