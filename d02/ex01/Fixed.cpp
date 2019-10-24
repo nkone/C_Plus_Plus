@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:17:41 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/23 20:31:12 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:04:53 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,21 @@ Fixed::Fixed(const Fixed& other) {
 // Assignment operator
 Fixed& Fixed::operator=(const Fixed& other) {
 	std::cout << "Assignment operator called\n";
-	this->_fixedPoint = other._fixedPoint;
+	if (this != &other)
+		this->_fixedPoint = other._fixedPoint;
 	return *this;
 }
 
 // Int Constructor
 Fixed::Fixed(const int n) {
-	this->_fixedPoint = n;
+	std::cout << "Int constructor called\n";
+	this->setRawBits(n << this->_fracBits);
+}
+
+// Float Constructor
+Fixed::Fixed(const float n) {
+	std::cout << "Float constructor called\n";
+	this->setRawBits(roundf(n * (1 << this->_fracBits)));
 }
 
 int Fixed::getRawBits(void) const {
@@ -51,10 +59,15 @@ void Fixed::setRawBits(int const raw) {
 	this->_fixedPoint = raw;
 }
 
-float Fixed::toFloats(void) const {
-	return (float)this->_fixedPoint;
+float Fixed::toFloat(void) const {
+	return (float)(this->_fixedPoint) / (1 << this->_fracBits);
 }
 
-std::stream& o operator<<(std::stream& o, Fixed const & n) {
-	o << n.toFloats();
+int Fixed::toInt(void) const {
+	return (int)(this->_fixedPoint >> this->_fracBits);
+}
+
+std::ostream& operator<<(std::ostream& o, Fixed const & n) {
+	o << n.toFloat();
+	return o;
 }

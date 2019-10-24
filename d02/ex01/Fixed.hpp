@@ -6,13 +6,14 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 17:58:00 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/23 20:12:50 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:59:03 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <cmath>
 
 class Fixed {
 	private:
@@ -33,6 +34,6 @@ class Fixed {
 		int		toInt(void) const;			// convert _fixedPoint to int
 };
 
-std::stream& o operator<<(std::stream& o, Fixed const & n);
+std::ostream& operator<<(std::ostream& o, Fixed const & n);
 
 #endif
