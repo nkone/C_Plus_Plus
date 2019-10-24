@@ -34,3 +34,4 @@
 # Editor junks
 .*.swp
 .DS_Store
+._.DS_Store
