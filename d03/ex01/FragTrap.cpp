@@ -6,23 +6,14 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 19:06:02 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/24 20:43:34 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/24 23:17:40 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
-	this->_hp				= 100U; 
-	this->_maxHp			= 100U;
-	this->_ep				= 100U;
-	this->_maxEp			= 100U;
-	this->_lvl				= 1U;
-	this->_name				= "";
-	this->_meleeDmg			= 30U;
-	this->_rangedDmg		= 20U;
-	this->_armorDmgReduct	= 5U;
-	std::cout << "FR4P-TP contructed. Let's get this party started!\n";
+	std::cout << "Empty body FragTrap contructed. Let's get this party started!\n";
 }
 
 FragTrap::FragTrap(const std::string& name) : _name(name) {
@@ -35,11 +26,11 @@ FragTrap::FragTrap(const std::string& name) : _name(name) {
 	this->_rangedDmg		= 20U;
 	this->_armorDmgReduct	= 5U;
 	std::cout << this->_name <<
-		" FR4P-TP contructed. Let's get this party started!\n";
+		" FragTrap contructed. Let's get this party started!\n";
 }
 
 FragTrap::~FragTrap() {
-	std::cout << this->_name << " FR4P-TP destructed. Robot down!\n";
+	std::cout << this->_name << " FragTrap destructed. Robot down!\n";
 }
 
 FragTrap::FragTrap(const FragTrap& other) {
@@ -52,7 +43,7 @@ FragTrap::FragTrap(const FragTrap& other) {
 	this->_rangedDmg		= other._rangedDmg; 
 	this->_armorDmgReduct	= other._armorDmgReduct; 
 	this->_name				= other._name; 
-	std::cout << "Copy constructor FR4P-TP completed\n";
+	std::cout << "Copy constructor FragTrap completed\n";
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& other) {
@@ -67,19 +58,19 @@ FragTrap& FragTrap::operator=(const FragTrap& other) {
 		this->_armorDmgReduct	= other._armorDmgReduct; 
 		this->_name				= other._name; 
 	}
-	std::cout << "Assignation constructor to another FR4P-TP called\n";
+	std::cout << "Assignation constructor to another FragTrap called\n";
 	return *this;
 }
 
 void FragTrap::rangedAttack(const std::string& target) const {
-	std::cout << "FR4P-TP " << this->_name << " attacks " << target <<
+	std::cout << "FragTrap " << this->_name << " attacks " << target <<
 		" at range, causing " << this->_rangedDmg << " points of damage!\n"; 
 	std::cout << "That looks like it hurts!" << std::endl;
 }
 
 void FragTrap::meleeAttack(const std::string& target) const {
 	std::cout << "Take that!" << std::endl;
-	std::cout << "FR4P-TP " << this->_name << " attacks " << target <<
+	std::cout << "FragTrap " << this->_name << " attacks " << target <<
 		" at range, causing " << this->_meleeDmg << " points of damage!\n"; 
 }
 
@@ -98,7 +89,8 @@ void FragTrap::takeDamage(unsigned int dmg) {
 }
 
 void FragTrap::beRepaired(unsigned int health) {
-	std::cout << "Repairing " << health << " health points. ";
+	std::cout << "Repairing " << health <<
+		" health points. Health! Eww, what flavor is red? ";
 	this->_hp += health;
 	if (this->_hp > this->_maxHp) {
 		std::cout << "Max HP is capped at " << this->_maxHp << std::endl;

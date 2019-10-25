@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 21:00:48 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/24 21:05:03 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/24 23:35:28 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() {
-	this->_hp				= 100U; 
-	this->_maxHp			= 100U;
-	this->_ep				= 50U;
-	this->_maxEp			= 50U;
-	this->_lvl				= 1U;
-	this->_name				= "";
-	this->_meleeDmg			= 20U;
-	this->_rangedDmg		= 15U;
-	this->_armorDmgReduct	= 3U;
-	std::cout << "ScavTrap contructed. Let's get this party started!\n";
+	std::cout << "Empty body ScavTrap contructed. Let's get this party started!\n";
 }
 
 ScavTrap::ScavTrap(const std::string& name) : _name(name) {
@@ -36,11 +27,12 @@ ScavTrap::ScavTrap(const std::string& name) : _name(name) {
 	this->_rangedDmg		= 15U;
 	this->_armorDmgReduct	= 3U;
 	std::cout << this->_name <<
-		" ScavTrap contructed. Let's get this party started!\n";
+		" ScavTrap contructed. Recompiling my combat code!\n";
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << this->_name << " ScavTrap destructed. Robot down!\n";
+	std::cout << this->_name << 
+		" ScavTrap destructed. Good thing I don't have a soul!\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) {
@@ -94,12 +86,12 @@ void ScavTrap::takeDamage(unsigned int dmg) {
 		this->_hp -= dmg;
 		std::cout << this->_name << " takes " << dmg <<
 			" points of damage. Remaining HP: " << this->_hp << std::endl;
-		std::cout << "My robotic flesh! AAHH!" << std::endl;
+		std::cout << "My body ahhh!" << std::endl;
 	}
 }
 
 void ScavTrap::beRepaired(unsigned int health) {
-	std::cout << "Repairing " << health << " health points. ";
+	std::cout << "Repairing " << health << " health points. Sweet life juice! ";
 	this->_hp += health;
 	if (this->_hp > this->_maxHp) {
 		std::cout << "Max HP is capped at " << this->_maxHp << std::endl;
@@ -109,3 +101,11 @@ void ScavTrap::beRepaired(unsigned int health) {
 	}
 }
 
+void ScavTrap::challengeNewComer(const std::string& target) const {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(0,4);
+	
+	std::cout << this->_name << " challenges " << target << " to " <<
+		gChallengeBox[dis(gen)] << std::endl;
+}

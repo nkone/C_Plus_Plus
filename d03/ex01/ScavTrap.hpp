@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 20:58:54 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/24 21:05:08 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/24 23:36:15 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,21 @@ class ScavTrap {
 		ScavTrap& operator = (const ScavTrap&); 
 		
 		// Abilities
-		void rangedAttack(const std::string& target) const;
-		void meleeAttack(const std::string& target) const;
+		void rangedAttack(const std::string&) const;
+		void meleeAttack(const std::string&) const;
 		void takeDamage(unsigned int);
 		void beRepaired(unsigned int);
 
 		//Special ability
+		void challengeNewComer(const std::string&) const;
+};
+
+static const std::string gChallengeBox[5] = {
+	"a rock, paper, scissor game.",
+	"a friendly but not that friendly duel to the death.",
+	"a hide and seek game on the moon.",
+	"knock off an apple with a grenade game.",
+	"do a backflip."
 };
 
 #endif
