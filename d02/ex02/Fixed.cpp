@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:17:41 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/24 18:07:24 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/24 22:42:35 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,19 @@ bool Fixed::operator!=(const Fixed& other) const {
 
 // Arithmetics overloaders //
 Fixed Fixed::operator+(const Fixed& other) const {
-	return (this->toFloat() + other.toFloat());
+	return (Fixed)((this->toFloat + other.toFloat()));
 }
 
 Fixed Fixed::operator-(const Fixed& other) const {
-	return (this->toFloat() - other.toFloat());
+	return (Fixed)(this->toFloat() - other.toFloat());
 }
 
 Fixed Fixed::operator*(const Fixed& other) const {
-	return (this->toFloat() * other.toFloat());
+	return (Fixed)(this->toFloat() * other.toFloat());
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
-	return (this->toFloat() / other.toFloat());
+	return (Fixed)(this->toFloat() / other.toFloat());
 }
 // End arithmetic overloaders //
 
