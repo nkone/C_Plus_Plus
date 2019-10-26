@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 20:58:54 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/25 16:12:57 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:39:34 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <random>
 #include "ClapTrap.hpp"
 
-class ScavTrap : private ClapTrap{
+class ScavTrap : protected ClapTrap{
 	public:
 		// Canonical declarations:
 		ScavTrap();
@@ -34,6 +34,7 @@ class ScavTrap : private ClapTrap{
 
 		//Special ability
 		void challengeNewComer(const std::string&) const;
+
 };
 
 static const std::string gChallengeBox[5] = {

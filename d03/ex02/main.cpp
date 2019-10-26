@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 20:00:30 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/25 16:05:25 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:42:38 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ScavTrap.hpp"
 
 int main(void) {
-	FragTrap clapTrap = FragTrap("clapTrap");
+	FragTrap clapTrap = FragTrap("FragTrap");
 	FragTrap clone;	
-	FragTrap cloneImage = FragTrap("clone");
+	FragTrap cloneImage = FragTrap("FragTrap Clone");
 	clone = cloneImage;
 
 	clapTrap.meleeAttack("slime");
@@ -41,6 +41,7 @@ int main(void) {
 	clone.vaulthunter_dot_exe("Badass Guardian");
 	clone.vaulthunter_dot_exe("Badass Guardian");
 	clone.vaulthunter_dot_exe("Badass Guardian");
+	clone.takeDamage(10U);
 
 	ScavTrap scav = ScavTrap("scavTrap");
 
@@ -52,6 +53,9 @@ int main(void) {
 	scav.beRepaired(5U);
 	scav.takeDamage(50U);
 	scav.takeDamage(50U);
+	scav.beRepaired(5U);
+	scav.beRepaired(5U);
+	scav.beRepaired(59U);
 	scav.takeDamage(50U);
 	scav.challengeNewComer("a wild vault hunter, Jack");
 	scav.challengeNewComer("a wild vault hunter, Jack");

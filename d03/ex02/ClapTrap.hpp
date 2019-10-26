@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 14:29:27 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/25 15:14:22 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:10:52 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ class ClapTrap {
 		void meleeAttack(const std::string&) const;
 		void takeDamage(unsigned int);
 		void beRepaired(unsigned int);
+
+		//Get functions
+		
+		unsigned int	getHp(void) const;
+		unsigned int	getMaxHp(void) const;
+		unsigned int	getEp(void) const;
+		unsigned int	getMaxEp(void) const;
+		unsigned int	getLvl(void) const;
 };
 
 #endif

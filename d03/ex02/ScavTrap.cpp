@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 21:00:48 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/25 16:13:05 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/25 21:39:29 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap() {
 }
 
 ScavTrap::ScavTrap(const std::string& name) {
-	this->_hp				= 100U; 
+	this->_hp				= 100U;
 	this->_maxHp			= 100U;
 	this->_ep				= 50U;
 	this->_maxEp			= 50U;
