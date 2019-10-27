@@ -6,7 +6,7 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/26 09:50:26 by phtruong          #+#    #+#              #
-#    Updated: 2019/10/26 10:11:15 by phtruong         ###   ########.fr        #
+#    Updated: 2019/10/26 16:51:15 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ FLAGS	:= -Wall -Wextra -Werror
 
 FILES	:= main.cpp \
 			Game.class.cpp \
-			Entity.class.cpp
+			Entity.class.cpp \
+			Bullet.class.cpp
 OBJ		:= $(FILES:.cpp=.o)
 
 all		: $(NAME)

@@ -12,7 +12,7 @@ public:
 	Entity(const Entity &ref);
 	Entity& operator=(Entity const &rhs);
 
-	Entity(int x, int y);
+	Entity(int x, int y, int size);
 
 	bool	left(int min);
 	bool	right(int max);
@@ -21,10 +21,18 @@ public:
 
 	int	getX(void);
 	int	getY(void);
+	int	getSize(void);
 
-private:
+	void	print(char c);
+	void	print(void);
+
+protected:
 	int	_x;
 	int	_y;
+	int	_size;
+
+	bool	increment(int *ptr, int max);
+	bool	decrement(int *ptr, int min);
 
 };
 

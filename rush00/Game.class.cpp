@@ -10,19 +10,15 @@ Game::Game(void)
 {
 	initscr();
 	getmaxyx(stdscr, this->_maxY, this->_maxX);
-	curs_set(0);//	Disable cursors
+	this->_player = Entity(this->_maxX / 2, this->_maxY / 2, 2);
 
-	// Get one input at a time ( actually not sure what it does but we need it)
-	raw();
-	cbreak();
-
+	curs_set(0);//	Disable cursor
+	cbreak();//	no line buffering: keys typed immediately available to the program
 	noecho();// No echo for key input
 	keypad(stdscr, TRUE);// Get keyboard input
+	nodelay(stdscr, TRUE);// Doesn't wait for user input
 
-	// Add string at (x, y);
-	this->_player = Entity(this->_maxX / 2, this->_maxY / 2);
-	mvprintw(this->_player.getY(), this->_player.getX(), "A");
-
+	this->_player.print();
 	refresh();
 }
 
@@ -49,19 +45,13 @@ Game&	Game::operator=(Game const &rhs)//	rhs "right hand side"
 // ************************************************************************** //
 void	Game::arrowKey(int key)
 {
-	clear();
-
+//	mvprintw(0, 0, "Key entered: %c ( value: %d )", key, key);	
 	if (key == 258)
-		this->_player.down(this->_maxY - 1);
+		this->_player.down(this->_maxY);
 	if (key == 259)
 		this->_player.up(1);
 	if (key == 260)
 		this->_player.left(0);
 	if (key == 261)
-		this->_player.right(this->_maxX - 1);
-
-	printw("Key entered: %c ( value: %d )", key, key);
-	move(0, 0);
-	mvprintw(this->_player.getY(), this->_player.getX(), "O");
-	refresh();
+		this->_player.right(this->_maxX);
 }

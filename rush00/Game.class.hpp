@@ -15,11 +15,10 @@ public:
 
 	void	arrowKey(int key);
 
+	Entity	_player;
 private:
 	int		_maxX;
 	int		_maxY;
-	Entity	_player;
-
 };
 
 #endif
