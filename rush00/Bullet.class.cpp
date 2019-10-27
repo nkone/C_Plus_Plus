@@ -46,10 +46,12 @@ void	Bullet::print(char c)
 	}
 }
 void	Bullet::print(void)	{ this->print('>'); }
-void	Bullet::fly(int max)
+void	Bullet::fly(int max, bool reverse)
 {
-	if (this->_x < max - this->_size)
+	if (reverse == false && this->_x < max - this->_size)
 		this->_x += 1;
+	else if (reverse == true && this->_x > max)
+		this->_x -= 1;
 }
 
 // ************************************************************************** //

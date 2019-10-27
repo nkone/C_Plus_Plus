@@ -18,6 +18,10 @@ Game::Game(void)
 	keypad(stdscr, TRUE);// Get keyboard input
 	nodelay(stdscr, TRUE);// Doesn't wait for user input
 
+	start_color();
+	init_pair(1, COLOR_CYAN, COLOR_BLACK); // Moon
+	init_pair(2, COLOR_RED, COLOR_BLACK); // Bullet color
+	init_pair(3, COLOR_GREEN, COLOR_BLACK); // Obj color
 	this->_player.print();
 	refresh();
 }

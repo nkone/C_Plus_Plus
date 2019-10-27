@@ -18,7 +18,7 @@ class Bullet : public Entity {
 		void	print(char c);
 		void	print(void);
 		char	getSymbol(void) const;
-		void	fly(int);
+		void	fly(int, bool);
 		bool	isActive;
 	private:
 		char	_symbol;
