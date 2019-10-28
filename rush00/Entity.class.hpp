@@ -12,25 +12,28 @@ public:
 	Entity(const Entity &ref);
 	Entity& operator=(Entity const &rhs);
 
-	Entity(int x, int y, int size);
+	Entity(int x, int y, int size, char c);
 
 	bool	left(int min);
 	bool	right(int max);
 	bool	up(int min);
 	bool	down(int max);
 
-	int	getX(void);
-	int	getY(void);
-	int	getSize(void);
+	void	print(void) const;
 
-	void	print(char c);
-	void	print(void);
+	int		getX(void) const;
+	int		getY(void) const;
+	int		getSize(void) const;
+	char	getSymbol(void) const;
 
 protected:
-	int	_x;
-	int	_y;
-	int	_size;
+	int		_x;
+	int		_y;
+	int		_size;
+	char	_symbol;
 
+	void	print(char c) const;
+	
 	bool	increment(int *ptr, int max);
 	bool	decrement(int *ptr, int min);
 

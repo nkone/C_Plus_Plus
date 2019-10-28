@@ -2,26 +2,25 @@
 #define	BULLET_H
 
 #include "Entity.class.hpp"
-#include "Game.class.hpp"
 #include <curses.h>
+
+#define SIZE 1
 
 class Bullet : public Entity {
 	public:
 
-		Bullet(void);	
-		~Bullet(void);
-		Bullet(const Bullet & ref);
-		Bullet& operator=(const Bullet & ref);
-
-		Bullet(int x, int y, int size);
+		Bullet(void)	:	Entity(0, 0, SIZE, '*'), _isActive(false){}
+		Bullet(int x, int y);
 		
-		void	print(char c);
 		void	print(void);
-		char	getSymbol(void) const;
-		void	fly(int, bool);
-		bool	isActive;
+		bool	fly(int max);
+		bool	flyRev(int min);
+		void	setCoord(int x, int y);
+		bool	_isActive;
+		bool	setVelocity(int velocity);
+
 	private:
-		char	_symbol;
+		int		_velocity;
 };
 
 #endif

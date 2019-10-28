@@ -3,6 +3,7 @@
 
 # include <curses.h>
 # include "Entity.class.hpp"
+# include "Bullet.class.hpp"
 
 class Game {
 
@@ -13,9 +14,16 @@ public:
 	Game(const Game &ref);
 	Game& operator=(Game const &rhs);
 
-	void	arrowKey(int key);
 
 	Entity	_player;
+	Bullet	_bulletArr[5];
+
+	void	arrowKey(int key);
+	bool	shoot(void);
+
+	int		maxX(void) const;
+	int		maxY(void) const;
+
 private:
 	int		_maxX;
 	int		_maxY;

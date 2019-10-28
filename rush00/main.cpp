@@ -1,107 +1,121 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 09:56:19 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/26 23:34:28 by phtruong         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Game.class.hpp"
 #include "Bullet.class.hpp"
+#include "Enemy.class.hpp"
 #include <random>
 #include <unistd.h>
+#include <iostream>
 
-void printMoon(void)
-{
-	attron(COLOR_PAIR(1));
-	mvprintw(1, COLS / 1.3 , "         ___---___          ");
-	mvprintw(2, COLS / 1.3 , "      .--         --.       ");
-	mvprintw(3, COLS / 1.3 , "    ./   ()      .-. \\.    ");
-	mvprintw(4, COLS / 1.3 , "   /   o    .   (   )  \\   ");
-	mvprintw(5, COLS / 1.3 , "  / .            '-'    \\  "); 
-	mvprintw(6, COLS / 1.3 , " |                       |  ");
-	mvprintw(7, COLS / 1.3 , " |    o           ()     |  ");
-	mvprintw(8, COLS / 1.3 , " |       .--.          O |  "); 
-	mvprintw(9, COLS / 1.3 , "  | .   |    |          |   ");
-	mvprintw(10, COLS / 1.3 , "   \\    `.__.'   o  .  /  ");
-	mvprintw(11, COLS / 1.3 , "    \\                 /   ");
-	mvprintw(12, COLS / 1.3 , "     `\\  o    ()     /'   ");
-	mvprintw(13, COLS / 1.3 , "       `--___   ___--'    ");
-	mvprintw(14, COLS / 1.3 , "             ---           ");
-	attroff(COLOR_PAIR(1));
-}
-void printStaticScenery(void)
-{
-	printMoon();
-}
-int main(void) {
+void printStaticScenery(void);
 
+bool	collision(Entity ent1, Entity ent2)
+{
+	if ((ent1.getX() == ent2.getX() ||
+		 ent1.getX() == ent2.getX() + 1)
+		&&
+		(ent1.getY() == ent2.getY() ||
+		 ent1.getY() == ent2.getY() + 1)
+		)
+	{
+		return (true);
+	}
+	return (false);
+}
+
+int	runGame(void)
+{
 	Game thegame;
 	int key;
-	Bullet bulletArray[3];
-	int totalBullets = 0;
-	
+	int score = 0;
+	int i = 0;
+	int j = 0;
 	//Random Generator
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> dis(20, LINES); // distribution range;
-	std::uniform_int_distribution<int> miniDis(1,4);
+	std::uniform_int_distribution<int> dis(14, thegame.maxY() - 20); // distribution range;
+	std::uniform_int_distribution<int> disX(COLS - 20, COLS -2);
 	// Usage dis(gen);
 
-	int score = 0;
+	Enemy enemySwarm[5];
+	
+	// init swarm
+	for (int i = 0; i < 5; i++)
+	{
+		enemySwarm[i] = Enemy(disX(gen), dis(gen)); // Random X Y
+	}
+
+	// Collision logic:
+	// Loop through array of player bullets, then check against enemy coordinates
+	// If bullet coordinate matches the enemy 'hitbox' then
+	// set the deactivate bullet and enemy;
 	
 	while (1)
 	{
 		refresh();
 		usleep(15000);
 		key = getch();
-		move(0,0);	
-		printw("Score: %d", score++);
+		clear();
+		printw("Score: %d", score);
 		printStaticScenery();
-		thegame.arrowKey(key);
-		if (key == 27)
-			break;
-		if (key == 32 && totalBullets >= 0 && totalBullets <= 3) // space, limit bullets to 3
+		// Moving Enemies
+		for (i = 0; i < 5; i++)
 		{
-			totalBullets++;
-			for (int i =0; i < 3; i++) // Check which bullets is on
+			if (enemySwarm[i]._isAlive && enemySwarm[i].getX() > enemySwarm[i].getSize())
 			{
-				if(bulletArray[i].isActive == false)
+				// Check colision between player and enemies
+				if (collision(enemySwarm[i], thegame._player) || collision(thegame._player, enemySwarm[i]))
 				{
-			//		move(bullet.getY(), bullet.getX() + 1);
-			//		addch(' ');
-					bulletArray[i] = Bullet(thegame._player.getX() + 1, thegame._player.getY(),0);
-					bulletArray[i].isActive = true;
-					break;
-				}
-			}
-		}
-		for (int i = 0; i < 3; i++) // moving the bullets
-		{
-			if (bulletArray[i].isActive == true)
-			{
-				if (bulletArray[i].getX() < COLS - 2)
-				{
-					move(bulletArray[i].getY(), bulletArray[i].getX() + 1);
-					addch(' '); // clear bullet trails;
-					bulletArray[i].fly(COLS, 0);	
-					attron(COLOR_PAIR(2));
-					addch(bulletArray[i].getSymbol());
-					attroff(COLOR_PAIR(2));
+					enemySwarm[i]._isAlive = false;
+					enemySwarm[i]._a._isActive = false;
+					return (score);
 				}
 				else
+					enemySwarm[i].flyRev(0);
+				// Enemy bullets collision with player
+				if (collision(enemySwarm[i]._a , thegame._player))
 				{
-					bulletArray[i].isActive = false;
-					move(bulletArray[i].getY(), bulletArray[i].getX() + 1);
-					addch(' ');
-					totalBullets--;
+					enemySwarm[i]._a._isActive = false;
+					score -= 10;
 				}
+			} // If enemy is dead the turn them back on
+			else
+			{
+				enemySwarm[i]._isAlive = true;
+				enemySwarm[i]._a._isActive = true;
+				enemySwarm[i].setCoord(disX(gen),dis(gen));
 			}
 		}
+		thegame.arrowKey(key);
+		if (key == 27)
+			return (score);
+		if (key == 32)
+			thegame.shoot();
+		for (i = 0; i < 5; i++)
+		{
+			// check if bullet collides with enemies
+			if (thegame._bulletArr[i]._isActive == true)
+			{
+				for (j = 0 ; j < 5; j++)
+				{
+					if (collision(thegame._bulletArr[i], enemySwarm[j]) ||
+						collision(enemySwarm[j], thegame._bulletArr[i]))
+					{
+						thegame._bulletArr[i]._isActive = false;
+						enemySwarm[j]._isAlive = false;
+						enemySwarm[j]._a._isActive = false;
+						score += enemySwarm[j].getPoints();
+					}
+				}
+			}
+			// moving the bullets
+			if (thegame._bulletArr[i]._isActive == TRUE)
+				thegame._bulletArr[i].fly(thegame.maxX());
+		}
 	}
+}
+
+int main(void)
+{
+	int score = runGame();
+	std::cout << "Game over! Your score was " << score << "!" << std::endl;
 	return (0);
 }

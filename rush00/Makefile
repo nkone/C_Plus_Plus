@@ -6,18 +6,20 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/26 09:50:26 by phtruong          #+#    #+#              #
-#    Updated: 2019/10/26 16:51:15 by phtruong         ###   ########.fr        #
+#    Updated: 2019/10/27 20:55:54 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= ft_retro
 CC		:= clang++
-FLAGS	:= -Wall -Wextra -Werror
+FLAGS	:= -std=c++98 -Wall -Wextra -Werror
 
 FILES	:= main.cpp \
 			Game.class.cpp \
 			Entity.class.cpp \
-			Bullet.class.cpp
+			Enemy.class.cpp \
+			Bullet.class.cpp \
+			staticScenery.cpp
 OBJ		:= $(FILES:.cpp=.o)
 
 all		: $(NAME)

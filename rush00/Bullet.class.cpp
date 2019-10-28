@@ -3,58 +3,60 @@
 // ************************************************************************** //
 //		Coplien's form
 // ************************************************************************** //
-Bullet::Bullet(void)
+Bullet::Bullet(int x, int y):
+	Entity(x, y, SIZE, '*'),
+	_isActive(true)
 {
-	this->_x = 0;
-	this->_y = 0;
-	this->_size = 0;
-	this->_symbol = '*';
-	this->isActive = false;
+	this->_velocity = 1;
+	this->print();
 }
-Bullet::Bullet(int x, int y, int size)
-{
-	this->_x = x;
-	this->_y = y;
-	this->_size = size;
-	this->_symbol = '*';
-	this->isActive = false;
-}
-
-Bullet::Bullet(const Bullet &ref)	{ *this = ref; }
-
-Bullet&	Bullet::operator=(Bullet const &rhs)//	rhs "right hand side"
-{
-	this->_x = rhs._x;
-	this->_y = rhs._y;
-	this->_size = rhs._size;
-	this->_symbol = '*';
-	return (*this);
-}
-
-Bullet::~Bullet(void){ }
 
 // ************************************************************************** //
 //		on screen
 // ************************************************************************** //
-
-void	Bullet::print(char c)
+void	Bullet::print(void)
 {
-	for (int i = 0; i < this->_size; ++i)
+	attron(COLOR_PAIR(2));
+	this->Entity::print();
+	attroff(COLOR_PAIR(2));
+}
+
+bool	Bullet::fly(int max)
+{
+	if (this->_isActive == true && (this->_x < max - this->_size))
 	{
-		for (int j = 0; j < this->_size; ++j)
-			mvprintw(this->_y + i, this->_x + j, (char[2]){c, '\0'});
+		this->_x += this->_velocity;
+		this->print();
+		return (true);
 	}
-}
-void	Bullet::print(void)	{ this->print('>'); }
-void	Bullet::fly(int max, bool reverse)
-{
-	if (reverse == false && this->_x < max - this->_size)
-		this->_x += 1;
-	else if (reverse == true && this->_x > max)
-		this->_x -= 1;
+	this->_isActive = false;
+	return (false);
 }
 
-// ************************************************************************** //
-//		getters
-// ************************************************************************** //
-char	Bullet::getSymbol(void) const {return (this->_symbol);}
+
+bool	Bullet::flyRev(int min)
+{
+	if (this->_isActive == true && (this->_x > min + this->_size))
+	{
+		this->_x -= this->_velocity;
+		this->print();
+		return (true);
+	}
+	this->_isActive = false;
+	return (false);
+}
+
+void Bullet::setCoord(int x, int y)
+{
+	this->_x = x;
+	this->_y = y;
+}
+
+bool Bullet::setVelocity(int velocity)
+{
+	if (velocity < 0)
+		return false;
+	else
+		this->_velocity = velocity;
+	return true;
+}

@@ -10,7 +10,7 @@ Game::Game(void)
 {
 	initscr();
 	getmaxyx(stdscr, this->_maxY, this->_maxX);
-	this->_player = Entity(this->_maxX / 2, this->_maxY / 2, 2);
+	this->_player = Entity(this->_maxX / 10, this->_maxY / 2, 2, 'A');
 
 	curs_set(0);//	Disable cursor
 	cbreak();//	no line buffering: keys typed immediately available to the program
@@ -22,6 +22,9 @@ Game::Game(void)
 	init_pair(1, COLOR_CYAN, COLOR_BLACK); // Moon
 	init_pair(2, COLOR_RED, COLOR_BLACK); // Bullet color
 	init_pair(3, COLOR_GREEN, COLOR_BLACK); // Obj color
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK); // Obj color
+	init_pair(5, COLOR_BLUE, COLOR_BLACK); // Obj color
+	init_pair(6, COLOR_MAGENTA, COLOR_BLACK); // Obj color
 	this->_player.print();
 	refresh();
 }
@@ -49,13 +52,33 @@ Game&	Game::operator=(Game const &rhs)//	rhs "right hand side"
 // ************************************************************************** //
 void	Game::arrowKey(int key)
 {
-//	mvprintw(0, 0, "Key entered: %c ( value: %d )", key, key);	
 	if (key == 258)
 		this->_player.down(this->_maxY);
 	if (key == 259)
-		this->_player.up(1);
+		this->_player.up(14);
 	if (key == 260)
 		this->_player.left(0);
 	if (key == 261)
 		this->_player.right(this->_maxX);
+	this->_player.print();
 }
+
+bool	Game::shoot(void)
+{
+	for (int i = 0; i < 5; i++) // Check which bullets is on
+	{
+		if (this->_bulletArr[i]._isActive == false)
+		{
+			this->_bulletArr[i] = Bullet(this->_player.getX() + this->_player.getSize(),
+										this->_player.getY());
+			return (true);
+		}
+	}
+	return (false);
+}
+
+// ************************************************************************** //
+//		getters
+// ************************************************************************** //
+int		Game::maxX(void) const		{ return (this->_maxX); }
+int		Game::maxY(void) const		{ return (this->_maxY); }
