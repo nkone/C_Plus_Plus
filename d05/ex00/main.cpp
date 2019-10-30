@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 11:09:36 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/29 11:45:34 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/29 15:47:10 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(void) {
 	Bureaucrat *a;
 	try {
 		a = new Bureaucrat("Adam", 9);
-	} catch (std::exception &e) {
+	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 	if (a != nullptr)
@@ -35,6 +35,13 @@ int main(void) {
 	Bureaucrat c = Bureaucrat("Caitlyn", 1);
 	std::cout << b << std::endl;
 	std::cout << c << std::endl;
+	try { b.decrement();
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+	try { c.increment(); } catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 	
 	return (0);
 }

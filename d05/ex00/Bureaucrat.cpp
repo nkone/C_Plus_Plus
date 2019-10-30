@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 20:42:31 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/29 11:37:34 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:23:11 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	return *this;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name){
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name){
 	// throw exception constructor if grade is less than _max value of 1
 	if (grade < _max) {
 		throw(GradeTooHighException());	

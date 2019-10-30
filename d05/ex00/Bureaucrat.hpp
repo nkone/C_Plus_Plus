@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 19:57:55 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/29 11:41:00 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:24:23 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Bureaucrat {
 		Bureaucrat& operator=(const Bureaucrat&);
 		
 		// Initialize with name and grade
-		Bureaucrat(std::string, int); 
+		Bureaucrat(const std::string&, int); 
 		
 
 		// Member getters
