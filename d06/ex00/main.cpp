@@ -6,7 +6,7 @@
 /*   By: phtruong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 19:07:58 by phtruong          #+#    #+#             */
-/*   Updated: 2019/10/30 20:31:42 by phtruong         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:13:18 by phtruong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <climits>
 #include <cmath>
 #include <iomanip>
-
+#include <exception>
 void	outputChar(double d) {
 	std::cout << "Char: ";
 	(std::isnan(d) || std::isinf(d)) ? (std::cout << "Impossible" << std::endl) :
@@ -51,11 +51,15 @@ void	outputDouble(double d) {
 }
 int main(int argc, char*argv[]) {
 	if (argc == 2) {
-		double d = std::stod(argv[1]);
-		outputChar(d);
-		outputInt(d);
-		outputFloat(d);
-		outputDouble(d);
+		try {
+			double d = std::stod(argv[1]);
+			outputChar(d);
+			outputInt(d);
+			outputFloat(d);
+			outputDouble(d);
+		} catch (std::exception& e) {
+			std::cout << e.what() << std::endl;
+		}
 	} else
 		std::cout << "Usage: ./print [char/int/float/double]" << std::endl;
 	return (0);
