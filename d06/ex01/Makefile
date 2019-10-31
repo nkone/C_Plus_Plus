@@ -6,11 +6,11 @@
 #    By: phtruong <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/30 20:27:31 by phtruong          #+#    #+#              #
-#    Updated: 2019/10/30 20:28:37 by phtruong         ###   ########.fr        #
+#    Updated: 2019/10/30 21:09:03 by phtruong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= print
+NAME	:= serialize
 CC		:= clang++
 FLAGS	:= -std=c++98 -Wall -Wextra -Werror
 
